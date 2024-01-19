@@ -7,7 +7,7 @@ volumes:
 
 services:
   frontend:
-    image: ${REGISTRY_URI}frontend:${TAG:-latest}
+    image: ruiisuuu/nginx_webapp
     ports:
       - protocol: tcp
         target: 80

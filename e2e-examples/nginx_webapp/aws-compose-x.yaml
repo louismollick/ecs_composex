@@ -9,9 +9,9 @@ services:
 # We need DNS information. We indicate which DNS zone to use publicly and which one to use in the VPC.
 # Given that we do not indicate Lookup, the new DNS Zones will be created.
 
-x-route53:
-  PublicZone:
-    ZoneName: mydomain.net
+# x-route53:
+#   PublicZone:
+#     ZoneName: mydomain.net
 
 x-cloudmap:
   PrivateNamespace:
@@ -24,15 +24,15 @@ x-elbv2:
   public-alb:
     Properties:
       Scheme: internet-facing
-      Type: application
+      Type: network
     Services:
       - name: frontend:frontend
         port: 80
-        protocol: HTTP
-        healthcheck: 80:HTTP
+        protocol: TCP
+        healthcheck: 80:TCP:2:10:300:120
     Listeners:
       - Port: 80
-        Protocol: HTTP
+        Protocol: TCP
         Targets:
           - name: frontend:frontend
             access: /

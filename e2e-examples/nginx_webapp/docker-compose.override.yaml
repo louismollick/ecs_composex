@@ -12,7 +12,7 @@ volumes:
 
 services:
   frontend:
-    image: ${REGISTRY_URI}nginx:${TAG:-latest}
+    image: ruiisuuu/nginx_webapp
     volumes:
       # We mount our volume app to NGINX default path
       - app:/usr/share/nginx/html:ro
